@@ -13,11 +13,13 @@ ISBN::Country - Extract country and language information from ISBN
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
+
+# TODO: also import information from http://everything2.com/title/ISBN+Country+codes
 
 our %Info;
 %Info = (
@@ -43,6 +45,14 @@ our %Info;
         lang        => [qw/ru uk/],
         countries   => [qw/ru/],
     },
+    600 => {
+        lang        => [qw/fa/],
+        countries   => [qw/ir/],
+    },
+    601 => {
+        lang        => [qw/kk ru/],
+        countries   => [qw/kz/],
+    },
     7   => {
         lang        => [qw/zh/],
         countries   => [qw/cn tw/],
@@ -59,6 +69,10 @@ our %Info;
     83  => {
         lang        => [qw/pl/],
         countries   => [qw/pl/],
+    },
+    84  => {
+        lang        => [qw/es/],
+        countries   => [qw/es/],
     },
     85  => {
         lang        => [qw/pt/],
