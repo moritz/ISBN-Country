@@ -79,7 +79,7 @@ our %Info;
         countries   => [qw/br/],
     },
     87  => {
-        lang        => [qw/dk/],
+        lang        => [qw/da/],
         countries   => [qw/dk/],
     },
     88  => {
