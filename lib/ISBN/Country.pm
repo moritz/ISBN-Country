@@ -38,7 +38,7 @@ our %Info;
         countries   => [qw/de at ch/],
     },
     4   => {
-        lang        => [qw/jp/],
+        lang        => [qw/ja/],
         countries   => [qw/jp/],
     },
     5   => {
