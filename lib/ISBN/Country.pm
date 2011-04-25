@@ -17,9 +17,10 @@ Version 0.02
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # TODO: also import information from http://everything2.com/title/ISBN+Country+codes
+#
 
 our %Info;
 %Info = (
@@ -27,12 +28,10 @@ our %Info;
         lang        => [qw/en/],
         countries   => [qw/us gb au/],
     },
-    1   => $Info{0},
     2   => {
         lang        => [qw/fr/],
         countries   => [qw/fr/],
     },
-    10  => $Info{2},
     3   => {
         lang        => [qw/de/],
         countries   => [qw/de at ch/],
@@ -61,7 +60,6 @@ our %Info;
         lang        => [qw/hi/],
         countries   => [qw/in/],
     },
-    93  => $Info{81},
     82  => {
         lang        => [qw/no/],
         countries   => [qw/nb nn/],
@@ -102,7 +100,6 @@ our %Info;
         lang        => [qw/fi/],
         countries   => [qw/fi/],
     },
-    951 => $Info{950},
     956 => {
         lang        => [qw/es/],
         countries   => [qw/cl qu/],
@@ -111,12 +108,10 @@ our %Info;
         lang        => [qw/pt/],
         countries   => [qw/pt/],
     },
-    989 => $Info{972},
     957 => {
         lang        => [qw/zh/],
         countries   => [qw/tw/],
     },
-    986 => $Info{957},
     960 => {
         lang        => [qw/el/],
         countries   => [qw/gr/],
@@ -125,7 +120,6 @@ our %Info;
         lang        => [qw/zh/],
         countries   => [qw/hk/],
     },
-    988 => $Info{962},
     963 => {
         lang        => [qw/hu/],
         countries   => [qw/hu/],
@@ -142,7 +136,6 @@ our %Info;
         lang        => [qw/ms/],
         countries   => [qw/my/],
     },
-    987 => $Info{967},
     979 => {
         lang        => [qw/id/],
         countries   => [qw/id/],
@@ -151,7 +144,6 @@ our %Info;
         lang        => [qw/en my zh ta/],
         countries   => [qw/sg/],
     },
-    9971 => $Info{981},
     9946 => {
         lang        => [qw/ko/],
         countries   => [qw/kp/],
@@ -194,6 +186,22 @@ our %Info;
     },
 );
 
+our @Aliases = qw/
+       1:0
+      10:2
+      93:81
+     951:950
+     989:972
+     986:957
+     988:962
+     987:967
+    9971:981
+    /;
+
+for (@Aliases) {
+    my ($to, $from) = split /:/;
+    $Info{$to} = $Info{$from};
+}
 
 sub _build_re {
     my $re = join '|', sort { length($b) <=> length($a) } keys %Info;
@@ -239,7 +247,7 @@ sub isbn_extract {
     my $isbn = shift;
     $isbn =~ tr/0-9X//cd;
     $isbn = substr($isbn, 3) if length($isbn) == 13;
-    if ($isbn =~ /($InfoRe)/) {
+    if ($isbn =~ /^($InfoRe)/) {
         return $Info{$1};
     } else {
         return;
