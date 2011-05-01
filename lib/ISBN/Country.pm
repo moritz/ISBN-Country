@@ -17,7 +17,7 @@ Version 0.02
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # TODO: also import information from http://everything2.com/title/ISBN+Country+codes
 #
@@ -92,11 +92,7 @@ our %Info;
         lang        => [qw/es/],
         countries   => [qw/ar/],
     },
-    950 => {
-        lang        => [qw/es/],
-        countries   => [qw/ar/],
-    },
-    950 => {
+    951 => {
         lang        => [qw/fi/],
         countries   => [qw/fi/],
     },
@@ -135,6 +131,10 @@ our %Info;
     967 => {
         lang        => [qw/ms/],
         countries   => [qw/my/],
+    },
+    968 => {
+        lang        => [qw/es/],
+        countries   => [qw/mx/],
     },
     979 => {
         lang        => [qw/id/],
@@ -190,7 +190,8 @@ our @Aliases = qw/
        1:0
       10:2
       93:81
-     951:950
+     952:951
+     970:968
      989:972
      986:957
      988:962
