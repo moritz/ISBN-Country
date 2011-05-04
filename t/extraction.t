@@ -1,4 +1,4 @@
-use Test::More tests => 6;
+use Test::More tests => 7;
 use lib qw/blib lib/;
 use ISBN::Country qw/isbn_extract/;
 use strict;
@@ -19,3 +19,5 @@ is $h->{lang}[0], 'en', 'isbn-13 without dashes';
 
 $h = isbn_extract('978-0-345-51870-5');
 is $h->{lang}[0], 'en', 'isbn-13 with dashes';
+
+is isbn_extract('9509080004')->{lang}[0], 'es', 'they speak Spanish in Argentina';
